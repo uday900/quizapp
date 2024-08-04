@@ -19,10 +19,6 @@ export var quizData = [
                 option4: "option4",
                 type: "multiplechoice" // Added type
             },
-            {
-                qname: "Describe the key features of React.",
-                type: "normal" // Added type
-            }
         ]   
     },
    

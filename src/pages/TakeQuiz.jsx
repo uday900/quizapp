@@ -9,27 +9,39 @@ function TakeQuiz() {
   const [timeLeft, setTimeLeft] = useState(+quiz.duration * 60); // Initial timer set to 10 seconds for testing
   const [isTimeUp, setIsTimeUp] = useState(false);
 
-  // useEffect(() => {
-  //   const timerId = setInterval(() => {
-  //     setTimeLeft(prevTimeLeft => {
-  //       if (prevTimeLeft <= 1) {
-  //         clearInterval(timerId);
-  //         setIsTimeUp(true);
-  //         navigate('/submit'); // Navigate to /submit page
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setTimeLeft(prevTimeLeft => {
+        if (prevTimeLeft <= 1) {
+          clearInterval(timerId);
+          setIsTimeUp(true);
+          navigate('/submit'); // Navigate to /submit page
 
-  //         alert("Time's up!");
-  //         return 0;
-  //       }
-  //       return prevTimeLeft - 1;
-  //     });
-  //   }, 1000);
+          alert("Time's up!");
+          return 0;
+        }
+        return prevTimeLeft - 1;
+      });
+    }, 1000);
 
-  //   return () => clearInterval(timerId); // Cleanup interval on component unmount
-  // }, [navigate]);
+    return () => clearInterval(timerId); // Cleanup interval on component unmount
+  }, [navigate]);
 
   const seconds = timeLeft % 60;
   const minutes = Math.floor(timeLeft / 60);
   const formatted_time = `${minutes} min : ${seconds} s`;
+
+  function handlesubmit() {    
+    try {
+      clearInterval(timerId)
+      
+    } catch (error) {
+      console.log(error)
+    }
+    navigate('/submit')
+  }
+  
+
   // console.log(quiz)
   return (
    
@@ -38,12 +50,12 @@ function TakeQuiz() {
         {/* Quiz name */}
         <div className="h3 text-primary">{quiz.quizName}</div>
         <div>{formatted_time}</div>
-        <div className="btn btn-danger" onClick={()=>navigate("/submit")}>Finish Test</div>
+        <div className="btn btn-danger" onClick={()=>handlesubmit()}>Finish Test</div>
       </div>
       <div className="contanier mt-5">
         {
           quiz.questions.map((question, index)=>{
-            return <div className="container mt-5">
+            return <div key={index} className="container mt-5">
 
               <div className="bg-secondary p-2 w-auto text-white">
                 {index+1} . {question.qname}
@@ -128,7 +140,7 @@ function TakeQuiz() {
 
       </div>
       <div className='w-100 text-center mb-5'>
-      <div className="btn btn-success " onClick={()=>navigate('/submit')}>Submit Test</div>
+      <div className="btn btn-success " onClick={()=>handlesubmit()}>Submit Test</div>
       
       </div>      {isTimeUp && <div>Time Over</div>}
     </>
