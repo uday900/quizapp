@@ -1,0 +1,37 @@
+:root{
+  --text-color: rgb(42, 44, 59);
+}
+
+
+.home{
+  width: 50%;
+  padding: 2%;
+  color: var(--text-color);
+}
+
+.home img{
+  width: 100%;
+  height: 70%;
+  object-fit: contain;
+  
+}
+.home-left{
+  margin: 20px ;
+  /* border: 1px solid red; */
+  text-align: center;
+}
+
+
+
+.create-new-quiz{
+  position:absolute;
+  margin: 2% 25%;
+  padding: 15px;
+  width: 50%;
+  min-height: 80vh;
+  z-index: 100;
+  background-color: whitesmoke;
+}
+.close-btn-1{
+  flex-direction: row-reverse;
+}
