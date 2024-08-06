@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NewQuestion from '../components/NewQuestion'
+import UpdateQuestion from '../components/UpdateQuestion'
 
 function CreateQuizesPage() {
   const navigate = useNavigate()
   const [qno, setqno] = useState(1)
   const [new_question_popup, setnew_question_popup] = useState(false)
+  const [update_question_popup, setupdate_question_popup] = useState(false)
+  const [form_data, setform_data] = useState();
+  // var update_index;
+  const [update_index, setupdate_index] = useState("")
+
+  const [new_quiz, setnew_quiz] = useState(
+    {
+      quizName : "",
+      duration: "",
+      questions : [],
+
+    }
+  )
   const [questions_arr, setquestions_arr] = useState([
     {
-      question_name: "What is the capital of France?",
+      questionName: "What is the capital of France?",
       option1: "Paris",
       option2: "London",
       option3: "Berlin",
@@ -18,19 +32,41 @@ function CreateQuizesPage() {
   }
   ,
   {
-      question_name: "Which of the following is a programming language?",
+      questionName: "Which of the following is a programming language?",
       option1: "Python",
       option2: "HTML",
       option3: "CSS",
       option4: "Photoshop",
       answer: "Python",
       type: "multiple choice",
-  }
+  },
+  {
+    questionName: "Which of the following is a NoSQL database?",
+    option1: "MySQL",
+    option2: "MongoDB",
+    option3: "PostgreSQL",
+    option4: "Oracle",
+    answer: "MongoDB",
+    type: "multiple choice",
+}
+
   
   ])
   // console.log(questions_arr)
   
+  const handleDeleteQuestion = (ind)=>{
+    // alert("f ")
+    setquestions_arr(questions_arr.filter((que,i)=>{
+      return ind !==i 
+    }))
+  }
+  const handleUpdateQuestion = (ind)=>{
+    setupdate_index(ind)
+    setupdate_question_popup(true)
+  }
   return (
+
+
     <div className='container'>
 
       <div className="form-group">
@@ -49,21 +85,27 @@ function CreateQuizesPage() {
       </div>
 
       <div className="btn btn-outline-success mt-5"
-        onClick={()=>setnew_question_popup(true)}>
-        Add question {qno}
+        onClick={()=>setnew_question_popup(true)}
+        
+      >
+        Add question
       </div>
 
     {
       new_question_popup && <NewQuestion  questions_arr = {questions_arr} setquestions_arr = {setquestions_arr} setqno = {setqno} setnew_question_popup={setnew_question_popup} new_question_popup={new_question_popup}/>
     }
+    {update_question_popup && <UpdateQuestion index = {update_index} setquestions_arr = {setquestions_arr} questions_arr = {questions_arr} setupdate_question_popup = {setupdate_question_popup}/>}
+    
     {/* displaying questions-------------------- */}
     <section className='mt-5 bg-light'>
-    {console.log(questions_arr)}
+    {/* {console.log(questions_arr)} */}
       {
         questions_arr.map((que,index)=>{
-          return <>
 
-            <b> {index + 1} . {que.question_name}</b>
+          return <>
+          <div key={index}>
+          <div>
+            <b> {index + 1} . {que.questionName}</b>
             {que.type == "normal" ? (
               <div>
               <div className="form-check">
@@ -116,19 +158,26 @@ function CreateQuizesPage() {
               </div>
               }
               </div>
-              
-
               )}
+
+            
+            </div>
               <div className='my-2'>
-                <div className="btn btn-sm btn-primary mx-2">
+                <div className="btn btn-sm btn-primary mx-2"
+                  onClick={()=>handleUpdateQuestion(index)}>
                   update
                 </div>
-                <button className="btn btn-sm btn-danger">
+                <button className="btn btn-sm btn-danger"
+                  onClick={()=>handleDeleteQuestion(index)}>
+        
                   delete
                 </button>
+
+                
               </div>
       
 
+          </div>
           </>
         })
       }
