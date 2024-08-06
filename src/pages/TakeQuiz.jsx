@@ -46,13 +46,16 @@ function TakeQuiz() {
   return (
    
     <>
-      <div className="navbar bg-dark text-white px-2">
+      <div className="navbar bg-dark text-white px-2 sticky-top">
         {/* Quiz name */}
         <div className="h3 text-primary">{quiz.quizName}</div>
         <div>{formatted_time}</div>
         <div className="btn btn-danger" onClick={()=>handlesubmit()}>Finish Test</div>
       </div>
-      <div className="contanier mt-5">
+
+      <div className="contanier"
+        style={{marginTop : "50px"}}
+      >
         {
           quiz.questions.map((question, index)=>{
             return <div key={index} className="container mt-5">

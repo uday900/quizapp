@@ -4,22 +4,14 @@ import './navbar.css'; // Import the custom CSS
 import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
-  const [isHomeActive, setIsHomeActive] = useState(true);
-  const [isQuizzesActive, setIsQuizzesActive] = useState(false);
-  const [isContactActive, setIsContactActive] = useState(false);
-
-  const handleLinkClick = (activeLink) => {
-    setIsHomeActive(activeLink === 'home');
-    setIsQuizzesActive(activeLink === 'quizzes');
-    setIsContactActive(activeLink === 'contact');
-  };
+  const [is_active, set_is_active] = useState();
 
   const location = useLocation();
   const path = location.pathname === '/quiz' || location.pathname === '/submit' ||
                 location.pathname ==='/instructions';
 
   return (
-    <nav className={`navbar navbar-expand-lg px-4 border ${path && 'd-none'}`}>
+    <nav className={`navbar navbar-expand-lg px-4 border align-items-center ${path && 'd-none'}`}>
       <div className="d-flex align-items-center">
         <a className="navbar-brand" href="/">
         <i
@@ -37,39 +29,56 @@ const NavBar = () => {
         ></div>
       </div>
 
-      <div className="collapse navbar-collapse">
-        <ul className="navbar-nav mr-auto">
+      <div 
+        className="list-items d-flex"
+          style={{listStyle : "none", alignContent : "center", alignItems :"center"}}
+        >
+        {/* <ul className="d-flex text-center border"
+          style={{listStyle: "none", alignItems: "center", height : "100%"}}> */}
           <li className="nav-item">
             <Link to ='/'
-              className={`nav-link ${isHomeActive ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('home')}
+              className='nav-link'
+              // className={`nav-link ${is_active ? 'active-link' : ''}`}
+              // onClick={() => set_is_active(true)}
             >
               Home
             </Link>
           </li>
+
           <li className="nav-item">
-            <Link to='/createquiz'
-              className={`nav-link ${isQuizzesActive ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('quizzes')}
+            <Link to='/quizzes'
+              className= 'nav-link'
+              // onClick={() => set_is_active(true)}
             >
               Quizzes
             </Link>
           </li>
+
+          <li className="nav-item">
+            <Link to='/createquiz'
+              className= 'nav-link'
+              // onClick={() => set_is_active(true)}
+            >
+              Create quiz
+            </Link>
+          </li>
+
           <li className="nav-item">
             <Link to ='/contact'
-              className={`nav-link ${isContactActive ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('contact')}
+              className= 'nav-link'
+              // onClick={() => set_is_active(true)}
             >
               Contact
             </Link>
           </li>
-        </ul>
-        <ul className="navbar-nav ms-auto">
+        {/* </ul> */}
+        
+      </div>
+      <ul className="navbar-nav ms-auto">
           <li className="nav-item">
             <button className="btn btn-primary">Login</button>
           </li>
         </ul>
-      </div>
     </nav>
   );
 };

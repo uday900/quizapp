@@ -1,0 +1,72 @@
+/* .close-btn .btn{
+    font-size: 25px;
+    position: absolute;
+    left: 46%;
+}
+.close-btn .btn:hover{
+    background-color: rgb(238, 239, 240);
+    border-radius: 50%;
+}
+.main-box{
+    width: 50%;
+} */
+
+
+.close-btn .btn {
+    font-size: 25px;
+    position: absolute;
+    left: 48%;
+}
+
+.close-btn .btn:hover {
+    background-color: rgb(238, 239, 240);
+    border-radius: 50%;
+}
+
+.main-box {
+    width: 100%;
+    max-width: 600px; /* Set a maximum width */
+    /* margin: auto; Center the box */
+}
+
+@media (max-width: 768px) {
+    .main-box {
+        width: 90%; /* Reduce width on smaller screens */
+    }
+
+    .close-btn .btn {
+        left: 50%; /* Center the close button */
+    }
+
+    form {
+        flex-direction: column; /* Stack form elements vertically */
+    }
+
+    .d-flex.gap-5 {
+        gap: 2rem; /* Reduce gap between elements */
+    }
+}
+
+@media (max-width: 576px) {
+    .close-btn .btn {
+        font-size: 20px; /* Reduce font size on smaller screens */
+    }
+
+    .form-group.row {
+        flex-direction: column; /* Stack label and input vertically */
+        align-items: flex-start;
+    }
+
+    .form-group .col-sm-4 {
+        width: 100%; /* Label full width */
+        text-align: left;
+    }
+
+    .form-group .col-sm-8 {
+        width: 100%; /* Input full width */
+    }
+
+    .form-control {
+        width: 100%; /* Ensure full width for inputs */
+    }
+}

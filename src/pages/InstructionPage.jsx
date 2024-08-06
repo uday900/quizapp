@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { context } from '../ContextValues';
-
+import { Link } from 'react-router-dom';
 function InstructionPage() {
 
 

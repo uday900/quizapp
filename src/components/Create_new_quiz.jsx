@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 function Create_new_quiz({setcreate_quiz_popup}) {
     const [qno, setqno] = useState(1);
     const [new_question_popup, setnew_question_popup] = useState(false);
-  console
+
   return <>
   <div className="create-new-quiz">
     {/* close btn */}

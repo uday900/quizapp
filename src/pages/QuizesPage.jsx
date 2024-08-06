@@ -10,11 +10,11 @@ function QuizesPage() {
     // console.log(quiz)
   return (
     <>
- {
+ {/* {
     create_quiz_popup && <Create_new_quiz setcreate_quiz_popup = {setcreate_quiz_popup}/>
- }
+ } */}
   <div className="container">
-    <div className="container mt-5">
+    {/* <div className="container mt-5">
         <div >
           <p>If you want to create new quiz &nbsp;
             <button className="btn btn-outline-success" 
@@ -23,23 +23,36 @@ function QuizesPage() {
             </button>
           </p>
         </div>
-    </div>
+    </div> */}
 
     <div className="container mt-5">
 
-        <div className="h3 text-primary">Quizes avilable</div>
-
+        <div className="h3 text-primary text-center mb-5">Quizes avilable</div>
+        <div className="container d-flex gap-5 justify-content-start flex-wrap">
         {
             quizData.map((quizitem)=>{
               // console.log(quiz)
               // context.log()
                 return <>
-                    <div className="h6">{quizitem.quizName} 
-                    <Link to = '/instructions' onClick={()=>setquiz(quizitem)}> Take this </Link>
-                    </div>
+                <div className="p-3 rounded shadow border"  
+                  style={{width: "200px", height : "200px"}}
+                >
+                  <div className="h5 ">
+                    {quizitem.quizName}
+                  </div>
+                  <div>
+                    <p>Duration : {quizitem.duration} min </p>
+                    <p>No.of questions : {quizitem.questions.length}</p>
+                    <p>
+                      <Link to = '/instructions' onClick={()=>setquiz(quizitem)}> Take this quiz </Link>
+                    </p>
+                  </div>
+                </div>
                 </>
             })
         }
+        </div>
+        
 
 
     </div>
