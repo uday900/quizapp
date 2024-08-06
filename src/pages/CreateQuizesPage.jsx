@@ -9,6 +9,8 @@ function CreateQuizesPage() {
   const [new_question_popup, setnew_question_popup] = useState(false)
   const [update_question_popup, setupdate_question_popup] = useState(false)
   const [form_data, setform_data] = useState();
+  const [quiz_name, setquiz_name] = useState("")
+  const [quiz_duration, setquiz_duration] = useState("")
   // var update_index;
   const [update_index, setupdate_index] = useState("")
 
@@ -64,31 +66,59 @@ function CreateQuizesPage() {
     setupdate_index(ind)
     setupdate_question_popup(true)
   }
+  const handleFormSubmit = (event)=>{
+    // event.preventDefault();
+    setnew_quiz({...new_quiz,
+      quizName : quiz_name,
+      duration : quiz_duration,
+      questions : questions_arr
+    })
+    // console.log("after handle")
+  }
+  // console.log(ne w_quiz)
+
+  
   return (
 
 
     <div className='container'>
 
+      <div className='mt-5'>
+      <form onSubmit={handleFormSubmit}>
       <div className="form-group">
         <div className="form-label">
           Name of the quiz
         </div>
+
         <input type="text" name="" 
           placeholder = "enter the quiz name" 
+          value={quiz_name}
+          onChange={(e)=>setquiz_name(e.target.value)}
           id="" className="form-control" 
-        />
+        required/>
       </div>
 
       <div className="form-grop">
         <label htmlFor="duration">Duration : </label>
-        <input type="number" name="" id="duration" className="form-control" />
+        <input type="number" name="" id="duration" 
+          value={quiz_duration}
+          onChange={(e)=>setquiz_duration(e.target.value)}
+          className="form-control" required/>
       </div>
 
-      <div className="btn btn-outline-success mt-5"
+      <div className='mt-5'>
+      <div className="btn btn-outline-success "
         onClick={()=>setnew_question_popup(true)}
         
       >
         Add question
+      </div>
+      <button type =  'submit' className="btn btn-success mx-3">
+        Create quiz
+      </button>
+      </div>
+      </form>
+      
       </div>
 
     {
