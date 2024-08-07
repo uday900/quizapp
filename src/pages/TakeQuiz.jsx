@@ -4,7 +4,7 @@ import { quizDataContext } from '../ContextValues';
 
 function TakeQuiz() {
   const navigate = useNavigate();
-  const {quizData, activeQuiz, setactiveQuiz} = useContext(quizDataContext);
+  const {quizScore, setquizScore, quizData, activeQuiz, setactiveQuiz} = useContext(quizDataContext);
   // console.log("acige",activeQuiz)
   const [timeLeft, setTimeLeft] = useState(+activeQuiz.duration * 60); // Initial timer set to 10 seconds for testing
   const [isTimeUp, setIsTimeUp] = useState(false);
@@ -16,7 +16,6 @@ function TakeQuiz() {
           clearInterval(timerId);
           setIsTimeUp(true);
           navigate('/submit'); // Navigate to /submit page
-
           alert("Time's up!");
           return 0;
         }
@@ -30,8 +29,10 @@ function TakeQuiz() {
   const seconds = timeLeft % 60;
   const minutes = Math.floor(timeLeft / 60);
   const formatted_time = `${minutes} min : ${seconds} s`;
+  const [Score, setScore] = useState(0);
 
-  function handlesubmit() {    
+  function handlesubmit() {
+    setquizScore(Score);
     try {
       clearInterval(timerId)
       
@@ -39,6 +40,15 @@ function TakeQuiz() {
       console.log(error)
     }
     navigate('/submit')
+  }
+
+  const handleScore = (event, ans)=>{
+    // console.log(event.target.value, ans)
+    if( event.target.value === ans){
+      setScore(Score + 1);
+      // console.log(quizScore)
+    }
+   
   }
   
 
@@ -48,7 +58,7 @@ function TakeQuiz() {
     <>
       <div className="navbar bg-dark text-white px-2 sticky-top">
         {/* Quiz name */}
-        <div className="h3 text-primary">{quizData.quizName}</div>
+        <div className="h3 text-primary">{activeQuiz.quizName}</div>
         <div>{formatted_time}</div>
         <div className="btn btn-danger" onClick={()=>handlesubmit()}>Finish Test</div>
       </div>
@@ -61,38 +71,49 @@ function TakeQuiz() {
             return <div key={index} className="container mt-5">
 
               <div className="bg-secondary p-2 w-auto text-white">
-                {index+1} . {question.qname}
+                {index+1} . {question.questionName}
               </div>
               <div className="options p-2 bg-light">
-                {/* {console.log(question.option3)} */}
                 {
-                  
                   question.type== "normal" ? (
                     <>
                     <p>Select one option</p>
                     <ul style={{listStyle: "none" , padding : "0"}}>
                       <li>
-                        <input type="radio" name={`q${index}`} id={`q${index}-option1`} />
+                        <input type="radio" name={`q${index}`}
+                          value={`${question.option1}`}
+                          onChange={(event)=>handleScore(event, question.answer)}
+                          id={`q${index}-option1`} />
                         &nbsp;
                         <label htmlFor={`q${index}-option1`} >{question.option1}</label>
                       </li>
 
                       <li>
-                        <input type="radio" name={`q${index}`} id={`q${index}-option2`} />
+                        <input type="radio" name={`q${index}`} 
+                          value={`${question.option2}`}
+                          onChange={(event)=>handleScore(event, question.answer)}
+                          id={`q${index}-option2`} />
                         &nbsp;
                         <label htmlFor={`q${index}-option2`} >{question.option2}</label>
                       </li>
 
                       {question.option3 != undefined && (
                       <li>
-                        <input type="radio" name={`q${index}`} id={`q${index}-option3`} />
+                        <input type="radio" name={`q${index}`} 
+                          value={`${question.option3}`}
+                          onChange={(event)=>handleScore(event, question.answer)}
+                          id={`q${index}-option3`} />
                         &nbsp;
                         <label htmlFor={`q${index}-option3`} >{question.option3}</label>
                       </li>
                       )}
                       {question.option3 != undefined && (
                       <li>
-                        <input type="radio" name={`q${index}`} id={`q${index}-option4`} />
+                        <input type="radio" name={`q${index}`} 
+                          
+                          value={`${question.option4}`}
+                          onChange={(event)=>handleScore(event, question.answer)}
+                          id={`q${index}-option4`} />
                         &nbsp;
                         <label htmlFor={`q${index}-option4`} >{question.option4}</label>
                       </li>
@@ -105,19 +126,28 @@ function TakeQuiz() {
                     <p>Select one or more options</p>
                     <ul style={{listStyle: "none" , padding : "0"}}>
                       <li>
-                        <input type="checkbox" name={`q${index}`} id={`q${index}-option1`} />
+                        <input type="checkbox" name={`q${index}`} 
+                          value={`${question.option1}`}
+                          onChange={(event)=>handleScore(event, question.answer)}
+                          id={`q${index}-option1`} />
                         &nbsp;
                         <label htmlFor={`q${index}-option1`} >{question.option1}</label>
                       </li>
 
                       <li>
-                        <input type="checkbox" name={`q${index}`} id={`q${index}-option2`} />
+                        <input type="checkbox" name={`q${index}`} 
+                          value={`${question.option2}`}
+                          onChange={(event)=>handleScore(event, question.answer)}
+                          id={`q${index}-option2`} />
                         &nbsp;
                         <label htmlFor={`q${index}-option2`} >{question.option2}</label>
                       </li>
                       {question.option3 != undefined && (
                         <li>
-                        <input type="checkbox" name={`q${index}`} id={`q${index}-option3`} />
+                        <input type="checkbox" name={`q${index}`} 
+                          value={`${question.option3}`}
+                          onChange={(event)=>handleScore(event, question.answer)}
+                          id={`q${index}-option3`} />
                         &nbsp;
                         <label htmlFor={`q${index}-option3`} >{question.option3} </label>
                       </li>
@@ -125,7 +155,10 @@ function TakeQuiz() {
                       
                       {question.option4 !=undefined && (
                       <li>
-                        <input type="checkbox" name={`q${index}`} id={`q${index}-option4`} />
+                        <input type="checkbox" name={`q${index}`} 
+                          value={`${question.option4}`}
+                          onChange={(event)=>handleScore(event, question.answer)}
+                          id={`q${index}-option4`} />
                         &nbsp;
                         <label htmlFor={`q${index}-option4`} >{question.option4}</label>
                       </li>

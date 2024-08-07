@@ -6,13 +6,14 @@ function HomePage() {
   const navigate = useNavigate()
   return <>
  <div className="home d-flex w-100 vh-100">
+
     <div className="home-left container">
         <div className="h1">
             Welcome to Quiz
         </div>
         <p>
             Quiz is a powerful quizzing <br />
-            platform developed by Sivaji and Uday. 
+            platform developed by Uday darla. 
         </p>
         <div className="btn btn-outline-dark"
           onClick={()=> navigate('/quizzes')}
