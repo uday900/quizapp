@@ -1,11 +1,8 @@
 import React, { createContext, useState } from 'react'
 
-export const context = createContext();
-
+export const quizDataContext = createContext();
 function ContextValues({children}) {
-    
-    const [quiz, setquiz] = useState(
-        
+    const [quizData, setquizData] = useState([
         {
             quizName: "React Quiz",
             duration: "20",
@@ -97,14 +94,54 @@ function ContextValues({children}) {
                     type: "normal" // Added type
                 }
             ]
-        }
-        
+        },
+        {
+            quizName: "React-native Quiz",
+            duration: "20",
+            questions: [
+                {
+                    qname: "Which hook is used to manage side effects in functional components?",
+                    option1: "useState", 
+                    option2: "useEffect",
+                    option3: "useContext",
+                    option4: "useRef",
+                    type: "multiplechoice" // Added type
+                },
+                
+                {
+                    qname: "What does the 'key' prop do in a list?",
+                    option1: "It uniquely identifies an element in the list", 
+                    option2: "It sets the id of the element",
+                    option3: "It binds the element to the DOM",
+                    option4: "None of the above",
+                    type: "multiplechoice" // Added type
+                },
+                {
+                    qname: "How do you conditionally render a component in React?",
+                    option1: "Using if-else statements", 
+                    option2: "Using the ternary operator",
+                    option3: "Using logical &&",
+                    option4: "All of the above",
+                    type: "multiplechoice" // Added type
+                },
+               
+               
+                {
+                    qname: "Does React has lifecycle methods in class components?",
+                    option1: "true",
+                    option2: "false",
+                    type: "normal" // Added type
+                }
+            ]
+        },
+    ]    
     )
+    const [activeQuiz, setactiveQuiz] = useState(null);
   return (
     <>
-    <context.Provider value = {{quiz, setquiz}} >
+    <quizDataContext.Provider value = {{quizData, setquizData, activeQuiz, setactiveQuiz}} >
         {children}
-    </context.Provider>
+    </quizDataContext.Provider>
 
     </>
   )

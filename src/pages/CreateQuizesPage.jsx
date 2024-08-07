@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NewQuestion from '../components/NewQuestion'
 import UpdateQuestion from '../components/UpdateQuestion'
+import './CreateQuizesPage.css'
+import { quizDataContext } from '../ContextValues'
 
 function CreateQuizesPage() {
   const navigate = useNavigate()
   const [qno, setqno] = useState(1)
+
   const [new_question_popup, setnew_question_popup] = useState(false)
   const [update_question_popup, setupdate_question_popup] = useState(false)
-  const [form_data, setform_data] = useState();
   const [quiz_name, setquiz_name] = useState("")
   const [quiz_duration, setquiz_duration] = useState("")
-  // var update_index;
   const [update_index, setupdate_index] = useState("")
-
-  const [new_quiz, setnew_quiz] = useState(
-    {
-      quizName : "",
-      duration: "",
-      questions : [],
-
-    }
-  )
+  
   const [questions_arr, setquestions_arr] = useState([
     {
       questionName: "What is the capital of France?",
@@ -54,8 +47,13 @@ function CreateQuizesPage() {
 
   
   ])
-  // console.log(questions_arr)
-  
+  // const [new_quiz, setnew_quiz] = useState({
+  //   quizName : quiz_name,
+  //     duration : quiz_duration,
+  //     questions : questions_arr
+  // })
+
+  const {quizData, setquizData}  = useContext(quizDataContext)  
   const handleDeleteQuestion = (ind)=>{
     // alert("f ")
     setquestions_arr(questions_arr.filter((que,i)=>{
@@ -67,28 +65,39 @@ function CreateQuizesPage() {
     setupdate_question_popup(true)
   }
   const handleFormSubmit = (event)=>{
-    // event.preventDefault();
-    setnew_quiz({...new_quiz,
+    event.preventDefault();
+    setquiz_name("")
+    setquiz_duration("")
+    const new_quiz = {
       quizName : quiz_name,
       duration : quiz_duration,
       questions : questions_arr
-    })
+    }
+    // setnew_quiz({...new_quiz, 
+    //   quizName : quiz_name,
+    //   duration : quiz_duration,
+    //   questions : questions_arr
+    // })
+
+    console.log("new quiz ", new_quiz)
+    setquizData([...quizData, new_quiz])
     // console.log("after handle")
   }
-  // console.log(ne w_quiz)
 
   
   return (
+    <div className='container border'>
 
-
-    <div className='container'>
-
-      <div className='mt-5'>
-      <form onSubmit={handleFormSubmit}>
-      <div className="form-group">
-        <div className="form-label">
-          Name of the quiz
-        </div>
+      <div className='mt-3'>
+      <div className="h2 text-center mb-4">
+        Create your own quiz
+      </div>
+      <form className = 'form' onSubmit={handleFormSubmit}>
+       
+        <div className="form-group">
+          <div className="form-label">
+            Name of the quiz
+          </div>
 
         <input type="text" name="" 
           placeholder = "enter the quiz name" 
@@ -132,8 +141,7 @@ function CreateQuizesPage() {
       {
         questions_arr.map((que,index)=>{
 
-          return <>
-          <div key={index}>
+          return <div key={index}>
           <div>
             <b> {index + 1} . {que.questionName}</b>
             {que.type == "normal" ? (
@@ -208,9 +216,14 @@ function CreateQuizesPage() {
       
 
           </div>
-          </>
         })
       }
+    
+    <div className='d-flex justify-content-end'>
+    <button type =  'submit' className="btn btn-success mx-3">
+        Create quiz
+      </button>
+    </div>
       
       
     </section>

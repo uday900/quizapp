@@ -1,14 +1,12 @@
 import React, { useContext, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
-import { context } from '../ContextValues';
+import { quizDataContext } from '../ContextValues';
 import { Link } from 'react-router-dom';
 function InstructionPage() {
 
 
-    const {quiz, setquiz} = useContext(context);
-    // console.log(quiz)
-    // console.log('inside instructor')
+    const {activeQuiz, setactiveQuiz} = useContext(quizDataContext);
     const navigate = useNavigate();
   const [isAgreed, setIsAgreed] = useState(false);
 
@@ -35,8 +33,8 @@ function InstructionPage() {
         {/* Exam Details Section */}
         <div className="card mb-4">
           <div className="card-body">
-            <h5 className="card-title">{quiz.quizName}: Final Assessment</h5>
-            <p className="card-text"><strong>Duration:</strong> {quiz.duration} min</p>
+            <h5 className="card-title">{activeQuiz.quizName}: Final Assessment</h5>
+            <p className="card-text"><strong>Duration:</strong> {activeQuiz.duration} min</p>
             {/* <p className="card-text">
               <strong>Sections:</strong>
               <ul>
@@ -216,6 +214,7 @@ function InstructionPage() {
             className="btn btn-primary mt-3" 
             onClick={()=>{
                 handleStartTest
+                // take quiz
                 navigate('/quiz')
             }}
             disabled={!isAgreed} // Button is disabled until checkbox is checked

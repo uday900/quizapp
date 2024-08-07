@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { context } from '../ContextValues';
+import { quizDataContext } from '../ContextValues';
 
 function TakeQuiz() {
   const navigate = useNavigate();
-  const {quiz} = useContext(context);
-  // console.log(typeof quiz.duration)
-  const [timeLeft, setTimeLeft] = useState(+quiz.duration * 60); // Initial timer set to 10 seconds for testing
+  const {quizData, activeQuiz, setactiveQuiz} = useContext(quizDataContext);
+  // console.log("acige",activeQuiz)
+  const [timeLeft, setTimeLeft] = useState(+activeQuiz.duration * 60); // Initial timer set to 10 seconds for testing
   const [isTimeUp, setIsTimeUp] = useState(false);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function TakeQuiz() {
     <>
       <div className="navbar bg-dark text-white px-2 sticky-top">
         {/* Quiz name */}
-        <div className="h3 text-primary">{quiz.quizName}</div>
+        <div className="h3 text-primary">{quizData.quizName}</div>
         <div>{formatted_time}</div>
         <div className="btn btn-danger" onClick={()=>handlesubmit()}>Finish Test</div>
       </div>
@@ -57,7 +57,7 @@ function TakeQuiz() {
         style={{marginTop : "50px"}}
       >
         {
-          quiz.questions.map((question, index)=>{
+          activeQuiz.questions.map((question, index)=>{
             return <div key={index} className="container mt-5">
 
               <div className="bg-secondary p-2 w-auto text-white">

@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from './Navbar'
 import image from '../assets/image.png'
 import { useNavigate } from 'react-router-dom'
 function Welcome_msg() {
@@ -16,7 +15,7 @@ function Welcome_msg() {
             platform developed by Sivaji and Uday. 
         </p>
         <div className="btn btn-outline-dark"
-          onClick={()=> navigate('/createquiz')}
+          onClick={()=> navigate('/quizzes')}
         >Get Started</div>
     </div>
 
