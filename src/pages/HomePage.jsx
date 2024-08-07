@@ -1,7 +1,8 @@
 import React from 'react'
 import image from '../assets/image.png'
 import { useNavigate } from 'react-router-dom'
-function Welco() {
+import Footer from '../components/Footer'
+function HomePage() {
   const navigate = useNavigate()
   return <>
  <div className="home d-flex w-100 vh-100">
@@ -21,7 +22,8 @@ function Welco() {
     <img src={image} alt="main image" />
 
   </div>
+  <Footer/>
   </>
 }
 
-export default Welcome_msg
+export default HomePage

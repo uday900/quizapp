@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import Create_new_quiz from '../components/Create_new_quiz'
+// import Create_new_quiz from '../components/Create_new_quiz'
 // import { quizData } from '../data'
 import {Link} from "react-router-dom"
 import { quizDataContext } from '../ContextValues'

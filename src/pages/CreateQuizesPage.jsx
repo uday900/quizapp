@@ -16,34 +16,34 @@ function CreateQuizesPage() {
   const [update_index, setupdate_index] = useState("")
   
   const [questions_arr, setquestions_arr] = useState([
-    {
-      questionName: "What is the capital of France?",
-      option1: "Paris",
-      option2: "London",
-      option3: "Berlin",
-      option4: "Madrid",
-      answer: "Paris",
-      type: "normal",
-  }
-  ,
-  {
-      questionName: "Which of the following is a programming language?",
-      option1: "Python",
-      option2: "HTML",
-      option3: "CSS",
-      option4: "Photoshop",
-      answer: "Python",
-      type: "multiple choice",
-  },
-  {
-    questionName: "Which of the following is a NoSQL database?",
-    option1: "MySQL",
-    option2: "MongoDB",
-    option3: "PostgreSQL",
-    option4: "Oracle",
-    answer: "MongoDB",
-    type: "multiple choice",
-}
+//     {
+//       questionName: "What is the capital of France?",
+//       option1: "Paris",
+//       option2: "London",
+//       option3: "Berlin",
+//       option4: "Madrid",
+//       answer: "Paris",
+//       type: "normal",
+//   }
+//   ,
+//   {
+//       questionName: "Which of the following is a programming language?",
+//       option1: "Python",
+//       option2: "HTML",
+//       option3: "CSS",
+//       option4: "Photoshop",
+//       answer: "Python",
+//       type: "multiple choice",
+//   },
+//   {
+//     questionName: "Which of the following is a NoSQL database?",
+//     option1: "MySQL",
+//     option2: "MongoDB",
+//     option3: "PostgreSQL",
+//     option4: "Oracle",
+//     answer: "MongoDB",
+//     type: "multiple choice",
+// }
 
   
   ])
@@ -73,12 +73,6 @@ function CreateQuizesPage() {
       duration : quiz_duration,
       questions : questions_arr
     }
-    // setnew_quiz({...new_quiz, 
-    //   quizName : quiz_name,
-    //   duration : quiz_duration,
-    //   questions : questions_arr
-    // })
-
     console.log("new quiz ", new_quiz)
     setquizData([...quizData, new_quiz])
     // console.log("after handle")
