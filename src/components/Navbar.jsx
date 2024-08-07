@@ -41,6 +41,7 @@ const NavBar = () => {
               // className={`nav-link ${is_active ? 'active-link' : ''}`}
               // onClick={() => set_is_active(true)}
             >
+              <i class="fa-solid fa-house"></i>&nbsp;
               Home
             </Link>
           </li>
@@ -68,6 +69,7 @@ const NavBar = () => {
               className= 'nav-link'
               // onClick={() => set_is_active(true)}
             >
+              <i class="fa-solid fa-user"></i>&nbsp;
               Contact
             </Link>
           </li>
@@ -75,8 +77,15 @@ const NavBar = () => {
         
       </div>
       <ul className="navbar-nav ms-auto">
-          <li className="nav-item">
+          <li className="nav-item mx-2">
+            <Link to = '/login' >
             <button className="btn btn-primary">Login</button>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to = '/signup' >
+            <button className="btn btn-primary">Signup</button>
+            </Link>
           </li>
         </ul>
     </nav>

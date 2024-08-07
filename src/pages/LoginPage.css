@@ -1,0 +1,19 @@
+.login-box{
+    width: 30%;
+   margin-top: 3%;
+   padding: 2%;
+}
+
+@media (max-width: 834px) {
+    .login-box{
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box{
+        width: 98%;
+    }
+}
+
+/* tablet */
