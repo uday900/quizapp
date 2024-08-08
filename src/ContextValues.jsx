@@ -4,11 +4,23 @@ export const quizDataContext = createContext();
 function ContextValues({children}) {
     const [quizData, setquizData] = useState(Data)
     const [activeQuiz, setactiveQuiz] = useState(null);
-    const [quizScore, setquizScore] = useState(0)
+    const [currentQuizScore, setcurrentQuizScore] = useState(0)
+    const [users, setusers] = useState([
+      {
+        userName: "",
+        userMail: "",
+        userPassword: "",
+        favourites: []
+      }
+    ])
   return (
     <>
-    <quizDataContext.Provider value = {{quizData,
-        quizScore , setquizScore,
+    <quizDataContext.Provider value = {{
+      quizData,
+      users,
+      setusers,
+      currentQuizScore, 
+      setcurrentQuizScore,
        setquizData, activeQuiz, setactiveQuiz}} >
         {children}
     </quizDataContext.Provider>
