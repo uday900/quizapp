@@ -15,43 +15,8 @@ function CreateQuizesPage() {
   const [quiz_duration, setquiz_duration] = useState("")
   const [update_index, setupdate_index] = useState("")
   
-  const [questions_arr, setquestions_arr] = useState([
-//     {
-//       questionName: "What is the capital of France?",
-//       option1: "Paris",
-//       option2: "London",
-//       option3: "Berlin",
-//       option4: "Madrid",
-//       answer: "Paris",
-//       type: "normal",
-//   }
-//   ,
-//   {
-//       questionName: "Which of the following is a programming language?",
-//       option1: "Python",
-//       option2: "HTML",
-//       option3: "CSS",
-//       option4: "Photoshop",
-//       answer: "Python",
-//       type: "multiple choice",
-//   },
-//   {
-//     questionName: "Which of the following is a NoSQL database?",
-//     option1: "MySQL",
-//     option2: "MongoDB",
-//     option3: "PostgreSQL",
-//     option4: "Oracle",
-//     answer: "MongoDB",
-//     type: "multiple choice",
-// }
+  const [questions_arr, setquestions_arr] = useState([])
 
-  
-  ])
-  // const [new_quiz, setnew_quiz] = useState({
-  //   quizName : quiz_name,
-  //     duration : quiz_duration,
-  //     questions : questions_arr
-  // })
 
   const {quizData, setquizData}  = useContext(quizDataContext)  
   const handleDeleteQuestion = (ind)=>{
@@ -213,9 +178,14 @@ function CreateQuizesPage() {
         })
       }
     
-    <div className='d-flex justify-content-end'>
-    <button type =  'submit' className="btn btn-success mx-3">
-        Create quiz
+    <div className='d-flex justify-content-end bg-white'>
+    
+      <button type =  'submit' 
+        onClick={handleFormSubmit} 
+        className="btn btn-success mx-3"
+        disabled = {quiz_name =="" || quiz_duration == ""}
+        >
+          Create quiz
       </button>
     </div>
       

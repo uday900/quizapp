@@ -1,23 +1,53 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './LoginPage.css'
+import { quizDataContext } from '../ContextValues';
+import { useNavigate } from 'react-router-dom';
 function LoginPage() {
+  const {users, setusers} = useContext(quizDataContext)
+  const [userEmail, setuserEmail] = useState("");
+  const [userPassword, setuserPassword] = useState("");
+  const navigate = useNavigate()
+
+  const handleForm = (event)=>{
+    event.preventDefault()
+    if (users.length ==0 ) return alert("you don't have regestered")
+    users.forEach((user)=>{
+      if (user.userEmail === userEmail && user.userPassword === userPassword){
+        navigate('/')
+        setuserEmail("")
+        setuserPassword("")
+      }
+      else{
+        alert("username/password is incorrect")
+      }
+    })
+    
+  }
   return (
     <>
     <div>
         <div className="container login-box border">
             <div className="h3 text-center">Login</div>
-            <form action="">
+            <form action="" onSubmit={handleForm}>
                 <div>
                     <label htmlFor="user-email" className="form-labe" id="user-name">
                         Enter email
                     </label>
-                    <input type="email" name="" id="user-email" className="form-control" />
+                    <input type="email" name=""
+                      value={userEmail}
+                      onChange={(e)=>setuserEmail(e.target.value)}
+                      id="user-email" className="form-control" 
+                      required/>
                 </div>
                 <div className='mt-2 mb-3'>
                     <label htmlFor="user-password" className="form-labe">
                         Enter password
                     </label>
-                    <input type="password" name="" id="user-password" className="form-control" />
+                    <input type="password" 
+                      value={userPassword}
+                      onChange={(e)=>setuserPassword(e.target.value)}
+                      name="" id="user-password" className="form-control" 
+                      required/>
                 </div>
                 <div className="row mb-4">
                     <div className="col d-flex justify-content-center">
@@ -30,13 +60,13 @@ function LoginPage() {
 
                     <div className="col">
                     {/* Simple link */}
-                    <a href="#!">Forgot password?</a>
+                    <a href="/forgotpassword">Forgot password?</a>
                     </div>
                 </div>
 
                 {/* Submit button */}
                 <div className='text-center'>
-                <button type="button" className="btn btn-primary btn-block mb-4" data-mdb-button-init data-mdb-ripple-init>
+                <button type="submit" className="btn btn-primary btn-block mb-4" data-mdb-button-init data-mdb-ripple-init>
                     Sign in
                 </button>
                 </div>

@@ -5,13 +5,14 @@ function ContextValues({children}) {
     const [quizData, setquizData] = useState(Data)
     const [activeQuiz, setactiveQuiz] = useState(null);
     const [currentQuizScore, setcurrentQuizScore] = useState(0)
+    
     const [users, setusers] = useState([
-      {
-        userName: "",
-        userMail: "",
-        userPassword: "",
-        favourites: []
-      }
+      // {
+      //   userName: "",
+      //   userMail: "",
+      //   userPassword: "",
+      //   favourites: []
+      // }
     ])
   return (
     <>

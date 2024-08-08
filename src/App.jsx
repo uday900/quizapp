@@ -3,7 +3,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home  from './pages/HomePage';
 import NavBar from './components/Navbar';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom'
 import Contact from './components/Contact';
 import QuizesPage from './pages/QuizesPage';
 import TakeQuiz from './pages/TakeQuiz';
@@ -13,6 +13,7 @@ import CreateQuizesPage from './pages/CreateQuizesPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import ForgotPassword from './components/ForgotPassword';
 function App() {
 
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path='/instructions' element = {<InstructionPage/>} />
       <Route path = '/login' element = { <LoginPage/>} />
       <Route path='/signup' element = { <SignupPage/>} />
+      <Route path='/forgotpassword' element = { <ForgotPassword/>} />
     </Routes>
    
     </>

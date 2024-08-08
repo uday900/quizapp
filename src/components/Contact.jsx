@@ -1,10 +1,12 @@
 import React from 'react'
 import image from '../assets/image.png'
+import Footer from './Footer'
 
 
 function Contact() {
-  return (
-    <div className='container d-flex'>
+  return <>
+   <div className="container min-vh-100">
+   <div className='container d-flex'>
       <div className="container mt-5">
         {/* Introductory Message */}
         <div className="alert alert-info mb-4" role="alert">
@@ -65,7 +67,9 @@ function Contact() {
       <img src={image} alt="" />
 
     </div>
-  )
+   </div>
+    <Footer/>
+    </>
 }
 
 export default Contact
