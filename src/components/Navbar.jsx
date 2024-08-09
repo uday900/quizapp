@@ -2,93 +2,139 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './navbar.css'; // Import the custom CSS
 import { Link, useLocation } from 'react-router-dom';
+import Sidebar from './Sidebar';
 
 const NavBar = () => {
   const [is_active, set_is_active] = useState();
+  const [showMenu, setshowMenu] = useState(false)
 
   const location = useLocation();
   const path = location.pathname === '/quiz' || location.pathname === '/submit' ||
                 location.pathname ==='/instructions';
-
+  
   return (
-    <nav className={`navbar navbar-expand-lg px-4 border align-items-center ${path && 'd-none'}`}>
-      <div className="d-flex align-items-center">
+    <nav className={`navbar navbar-expand-lg px-4 border navbar-light bg-light ${path && 'd-none'}`}>
+      
+
+      {showMenu && <Sidebar showMenu = {showMenu} setshowMenu={ setshowMenu}/>}
+      <div className="navbar-brand ">
         <a className="navbar-brand" href="/">
-        <i
-          className="fas fa-cubes fa-2x me-3"
-          style={{ color: '#ff6219' }}
-                  ></i>
+          <i className="fas fa-cubes fa-2x"
+            style={{ color: '#ff6219' }}></i>
         </a>
-        <div
-          className="vr mx-3"
-          style={{
-            height: '40px',
-            width: '1px',
-            backgroundColor: '#000',
-          }}
-        ></div>
+      </div>
+       
+      <div className="display-on-tablet navbar-nav">
+        <form class="d-flex flex-row">
+          <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-primary" type="button" data-mdb-ripple-color="dark">
+            Search
+          </button>
+
+          <Link to = '/login' >
+              <button className="login btn btn-primary mx-3">Login</button>
+              </Link>
+          <Link to = '/signup' >
+              <button className="signup btn btn-primary">Signup</button>
+              </Link>
+        </form>
+      </div>
+      <div className="display-on-mobile ">
+        <form class="d-flex flex-row ">
+          <input type="search" 
+            class="form-control" 
+            placeholder="Search" aria-label="Search" />
+          <button class="btn btn-primary" type="button" >
+          <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+
+        </form>
       </div>
 
-      <div 
-        className="list-items d-flex"
-          style={{listStyle : "none", alignContent : "center", alignItems :"center"}}
+      {/* menu symbol------------ */}
+            <button
+            className='menu-btn'
+            onClick={()=>setshowMenu(true)}
+          // className="navbar-toggler"
+          // type="button"
+          // data-bs-toggle="collapse"
+          // data-bs-target="#collapse-one"
+          // aria-controls="collapse-one"
+          // aria-expanded="false"
+          // aria-label="Toggle navigation"
         >
-        {/* <ul className="d-flex text-center border"
-          style={{listStyle: "none", alignItems: "center", height : "100%"}}> */}
-          <li className="nav-item">
-            <Link to ='/'
-              className='nav-link'
-              // className={`nav-link ${is_active ? 'active-link' : ''}`}
-              // onClick={() => set_is_active(true)}
-            >
-              <i class="fa-solid fa-house"></i>&nbsp;
-              Home
-            </Link>
-          </li>
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-          <li className="nav-item">
-            <Link to='/quizzes'
-              className= 'nav-link'
-              // onClick={() => set_is_active(true)}
-            >
-              Quizzes
-            </Link>
-          </li>
 
-          <li className="nav-item">
-            <Link to='/createquiz'
-              className= 'nav-link'
-              // onClick={() => set_is_active(true)}
-            >
-              Create quiz
-            </Link>
-          </li>
+      {/* collapse navbar-collapse */}
+      <div className="collapse navbar-collapse " id = "collapse-one">
+        <ul className='navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0' >
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <Link to ='/' className='nav-link'>
+            <div>
+              <i class="fas fa-home fa-lg mb-1"></i>
+            </div>
+            Home
+          </Link>
+        </li>
 
-          <li className="nav-item">
-            <Link to ='/contact'
-              className= 'nav-link'
-              // onClick={() => set_is_active(true)}
-            >
-              <i class="fa-solid fa-user"></i>&nbsp;
-              Contact
-            </Link>
-          </li>
-        {/* </ul> */}
-        
-      </div>
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <Link to ='/quizzes' className='nav-link'>
+            <div>
+            <i class="fa-regular fa-note-sticky fa-lg mb-1"></i>            </div>
+            Quizes
+          </Link>
+        </li>
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <Link to ='/createquiz' className='nav-link'>
+            <div>
+            <i class="fa-solid fa-circle-plus fa-lg mb-1"></i>            </div>
+            Create quizzes
+          </Link>
+        </li>
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <Link to ='/contact' className='nav-link'>
+            <div>
+            <i class="fa-solid fa-user fa-lg mb-1"></i>
+                        </div>
+            Contact
+          </Link>
+        </li>
+       
+        </ul>
 
-      <ul className="navbar-nav ms-auto">
-          <li className="nav-item mx-2">
-            <Link to = '/login' >
-            <button className="btn btn-primary">Login</button>
+        {/* <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <a class="nav-link" href="#!">
+            <div>
+              <i class="fas fa-bell fa-lg mb-1"></i>
+              <span class="badge rounded-pill badge-notification bg-info">11</span>
+            </div>
+            Messages
+          </a>
+        </li>
+        </ul> */}
+
+        <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
+        <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-primary" type="button" data-mdb-ripple-color="dark">
+          Search
+        </button>
+
+        <Link to = '/login' >
+            <button className="btn btn-primary mx-3">Login</button>
             </Link>
-          </li>
-          <li className="nav-item">
-            <Link to = '/signup' >
+        <Link to = '/signup' >
             <button className="btn btn-primary">Signup</button>
             </Link>
-          </li>
-        </ul>
+      </form>
+
+      </div>
+
+     
+          
+      
     </nav>
   );
 };
