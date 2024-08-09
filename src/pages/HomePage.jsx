@@ -22,7 +22,7 @@ function HomePage() {
 
     <img src={image} alt="main image" />
 
-  </div>
+</div>
   <Footer/>
   </>
 }

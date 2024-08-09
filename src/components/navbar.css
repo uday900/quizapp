@@ -21,4 +21,19 @@
     color: #007bff;
   }
 
+
+
+
+
+@media (max-width: 834px) {
+  .navbar{
+    
+  }
+}
+  @media (max-width: 480px) {
+    .navbar{
+      /* display: none; */
+    }
+   }
+
   

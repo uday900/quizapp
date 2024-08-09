@@ -1,6 +1,22 @@
+.box{
+    width: 200px;
+    height: 200px;
+}
 .box:hover{
     background-color: whitesmoke;
     transform: scale(1.1, 1.1);
     transition: 1s all ;
     cursor: pointer;
 }
+.boxes-container{
+    justify-content: start;
+}
+
+@media (max-width: 834px){
+    .boxes-container{
+        justify-content: center;
+    }
+}
+@media (max-width: 480px) {
+    
+   }

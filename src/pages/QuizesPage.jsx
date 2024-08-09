@@ -10,7 +10,7 @@ function QuizesPage() {
     const [create_quiz_popup, setcreate_quiz_popup] = useState(false)
     const {quizData, setquizData, activeQuiz, setactiveQuiz} = useContext(quizDataContext);
     
-    console.log("list of quizes", quizData)
+    // console.log("list of quizes", quizData)
   return (
     <>
 
@@ -18,11 +18,10 @@ function QuizesPage() {
     <div className="container mt-5">
 
         <div className="h3 text-primary text-center mb-5">Quizes avilable</div>
-        <div className="container d-flex gap-5 justify-content-start flex-wrap">
+        <div className="container d-flex flex-wrap gap-5  boxes-container">
         {
             quizData.map((quizitem, index)=>{
-                return <div key={index} className="box p-3 rounded shadow border"  
-                  style={{width: "200px", height : "200px"}}
+                return <div key={index} className="p-3 rounded shadow border box "  
                 >
                   <div className="h5 ">
                     {quizitem.quizName}

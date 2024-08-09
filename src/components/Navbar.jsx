@@ -18,7 +18,7 @@ const NavBar = () => {
           className="fas fa-cubes fa-2x me-3"
           style={{ color: '#ff6219' }}
                   ></i>
-               </a>
+        </a>
         <div
           className="vr mx-3"
           style={{
@@ -76,6 +76,7 @@ const NavBar = () => {
         {/* </ul> */}
         
       </div>
+
       <ul className="navbar-nav ms-auto">
           <li className="nav-item mx-2">
             <Link to = '/login' >
