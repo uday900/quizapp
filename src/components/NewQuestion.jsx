@@ -28,14 +28,14 @@ function NewQuestion({ questions_arr, setquestions_arr, setnew_question_popup, s
     
   return (
     <div className='main-box mt-5 p-2 shadow '>
-    
-    <div className='close-btn' >
-            <div className="btn btn-default"
-                onClick={()=>setnew_question_popup(false)}
-            >
-            <i class="fa-regular fa-circle-xmark"></i>
-            </div>
-    </div>
+
+   
+        <div className="btn btn-default close-btn"
+            onClick={()=>setnew_question_popup(false)}
+        >
+        <i class="fa-regular fa-circle-xmark"></i>
+        </div>
+
 
     
     <div className="container p-3">

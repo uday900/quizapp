@@ -12,10 +12,14 @@
 } */
 
 
-.close-btn .btn {
+.close-btn {
     font-size: 25px;
     position: absolute;
-    left: 48%;
+    top: -20px;
+    right: -20px;
+    cursor: pointer;
+    color: red;
+    
 }
 
 .close-btn .btn:hover {
@@ -25,13 +29,14 @@
 
 .main-box {
     width: 100%;
+    position: relative;
     max-width: 600px; /* Set a maximum width */
     /* margin: auto; Center the box */
 }
 
 @media (max-width: 768px) {
     .main-box {
-        width: 90%; /* Reduce width on smaller screens */
+        width: 100%; /* Reduce width on smaller screens */
     }
 
     .close-btn .btn {

@@ -3,3 +3,13 @@
     /* display: none; */
     width: 50%;
 }
+.btn-1{
+    margin-right: 10px;
+}
+
+@media (max-width: 834px) {
+    .form{
+        width: 100%;
+    }
+    
+}

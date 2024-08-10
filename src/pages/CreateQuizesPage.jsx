@@ -75,15 +75,15 @@ function CreateQuizesPage() {
       </div>
 
       <div className='mt-5'>
-      <div className="btn btn-outline-success "
-        onClick={()=>setnew_question_popup(true)}
-        
-      >
-        Add question
-      </div>
-      <button type =  'submit' className="btn btn-success mx-3">
-        Create quiz
-      </button>
+        <button className="btn-1 btn btn-outline-success"
+          onClick={()=>setnew_question_popup(true)}
+          
+        >
+          Add question
+        </button>
+        <button type =  'submit' className="btn btn-success ">
+          Create quiz
+        </button>
       </div>
       </form>
       
