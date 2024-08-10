@@ -1,0 +1,10 @@
+
+@media (max-width: 834px) {
+    .content-box{
+        flex-direction: column;
+    }
+    img{
+        width: 100%;
+        object-fit: contain;
+    }
+}
