@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './navbar.css'; // Import the custom CSS
 import { Link, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import logimage from '../assets/website_logo.jpeg'
 
 const NavBar = () => {
   const [is_active, set_is_active] = useState();
@@ -14,13 +15,15 @@ const NavBar = () => {
   
   return (
     <nav className={`navbar navbar-expand-lg px-4 border navbar-light bg-light ${path && 'd-none'}`}>
-      
-
+    
+        
       {showMenu && <Sidebar showMenu = {showMenu} setshowMenu={ setshowMenu}/>}
-      <div className="navbar-brand ">
+      <div className="navbar-brand">
         <a className="navbar-brand" href="/">
-          <i className="fas fa-cubes fa-2x"
-            style={{ color: '#ff6219' }}></i>
+          {/* <i className="fas fa-cubes fa-2x"
+            style={{ color: '#ff6219' }}></i> */}
+            <img src={logimage} alt="website logo" 
+              className='logo-image'/>
         </a>
       </div>
        
@@ -39,21 +42,22 @@ const NavBar = () => {
               </Link>
         </form>
       </div>
-      <div className="display-on-mobile ">
-        <form class="d-flex flex-row ">
-          <input type="search" 
+      <div >
+        <div className="display-on-mobile " >
+        {/* <form class=""> */}
+          {/* <input type="search" 
             class="form-control" 
-            placeholder="Search" aria-label="Search" />
-          <button class="btn btn-primary" type="button" >
+            placeholder="Search" aria-label="Search" /> */}
+          <button class="btn" type="button" >
           <i class="fa-solid fa-magnifying-glass"></i>
           </button>
 
-        </form>
+        {/* </form> */}
       </div>
 
       {/* menu symbol------------ */}
             <button
-            className='menu-btn'
+            className='menu-btn p-0 navbar-toggler'
             onClick={()=>setshowMenu(true)}
           // className="navbar-toggler"
           // type="button"
@@ -63,8 +67,9 @@ const NavBar = () => {
           // aria-expanded="false"
           // aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <i className="navbar-toggler-icon"></i>
         </button>
+        </div>
 
 
       {/* collapse navbar-collapse */}
@@ -131,8 +136,6 @@ const NavBar = () => {
       </form>
 
       </div>
-
-     
           
       
     </nav>

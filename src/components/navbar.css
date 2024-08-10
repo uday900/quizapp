@@ -26,7 +26,10 @@
   outline: none;
   background: transparent;
 }
-
+.menu-btn:active{
+  outline: none;
+  border: none;
+}
 .sidebar {
   position: fixed; /* Use fixed positioning to keep it on the screen */
   top: 0;
@@ -50,6 +53,19 @@
   list-style-type: none;
 }
 
+.logo-image{
+  width: 50px;
+  height: 50px;
+  /* border: 1px solid black; */
+  /* aspect-ratio: 3/2; */
+  object-fit: contain;
+  /* mix-blend-mode: color-burn; */
+  border-radius: 700px;
+}
+
+
+
+
 
 @media (max-width: 990px) {
   .display-on-tablet{
@@ -72,6 +88,10 @@
     }
     .display-on-mobile{
       display: inline-block;
+    }
+    .logo-image{
+      width: 35px;
+      height: 35px;
     }
     
    }
