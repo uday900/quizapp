@@ -62,8 +62,20 @@
   /* mix-blend-mode: color-burn; */
   border-radius: 700px;
 }
+.search-box{
+  padding: 0 20px;
+  border: #007bff;
+}
+.search-input{
 
+  position: absolute;
+  width: 100%;
+  left: 0;
+  /* : 0 3%; */
+  overflow: hidden;
 
+  /* padding: 5px; */
+}
 
 
 

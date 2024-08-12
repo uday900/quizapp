@@ -7,6 +7,7 @@ function TakeQuiz() {
   const { currentQuizScore, setcurrentQuizScore, quizData, activeQuiz, setactiveQuiz } = useContext(quizDataContext);
   const [timeLeft, setTimeLeft] = useState(+activeQuiz.duration * 60); // Timer in seconds
   const [isTimeUp, setIsTimeUp] = useState(false);
+
   const [score, setScore] = useState(0);
   
   useEffect(() => {
@@ -30,6 +31,7 @@ function TakeQuiz() {
   const formattedTime = `${minutes} min : ${seconds} s`;
 
   const handleSubmit = () => {
+    // setactiveQuiz(null)
     setcurrentQuizScore(score);
     navigate('/submit');
   };

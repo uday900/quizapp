@@ -8,6 +8,7 @@ import logimage from '../assets/website_logo.jpeg'
 const NavBar = () => {
   const [is_active, set_is_active] = useState();
   const [showMenu, setshowMenu] = useState(false)
+  const [is_search_active, setis_search_active] = useState(false)
 
   const location = useLocation();
   const path = location.pathname === '/quiz' || location.pathname === '/submit' ||
@@ -20,8 +21,6 @@ const NavBar = () => {
       {showMenu && <Sidebar showMenu = {showMenu} setshowMenu={ setshowMenu}/>}
       <div className="navbar-brand">
         <a className="navbar-brand" href="/">
-          {/* <i className="fas fa-cubes fa-2x"
-            style={{ color: '#ff6219' }}></i> */}
             <img src={logimage} alt="website logo" 
               className='logo-image'/>
         </a>
@@ -45,12 +44,20 @@ const NavBar = () => {
       <div >
         <div className="display-on-mobile " >
         {/* <form class=""> */}
-          {/* <input type="search" 
-            class="form-control" 
-            placeholder="Search" aria-label="Search" /> */}
-          <button class="btn" type="button" >
+
+        
+         {is_search_active &&  <div className="search-box">
+            <input type="text" 
+            class="form-control w-auto search-input" 
+            placeholder="Search"  />      
+          </div>
+        }
+          <button class="btn" type="button" 
+            onClick={()=>setis_search_active(is_search_active ? false : true)}>
           <i class="fa-solid fa-magnifying-glass"></i>
           </button>
+        
+         
 
         {/* </form> */}
       </div>

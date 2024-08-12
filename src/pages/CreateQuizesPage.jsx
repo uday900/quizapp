@@ -17,7 +17,6 @@ function CreateQuizesPage() {
   
   const [questions_arr, setquestions_arr] = useState([])
 
-
   const {quizData, setquizData}  = useContext(quizDataContext)  
   const handleDeleteQuestion = (ind)=>{
     // alert("f ")
@@ -29,10 +28,12 @@ function CreateQuizesPage() {
     setupdate_index(ind)
     setupdate_question_popup(true)
   }
+
   const handleFormSubmit = (event)=>{
     event.preventDefault();
     setquiz_name("")
     setquiz_duration("")
+    setquestions_arr([])
     const new_quiz = {
       quizName : quiz_name,
       duration : quiz_duration,
@@ -75,12 +76,11 @@ function CreateQuizesPage() {
       </div>
 
       <div className='mt-5'>
-        <button className="btn-1 btn btn-outline-success"
+        <div className="btn-1 btn btn-outline-success"
           onClick={()=>setnew_question_popup(true)}
-          
         >
           Add question
-        </button>
+        </div>
         <button type =  'submit' className="btn btn-success ">
           Create quiz
         </button>

@@ -1,5 +1,4 @@
 import React from 'react'
-import image from '../assets/image.png'
 import Footer from './Footer'
 import './Contact.css'
 
@@ -64,7 +63,6 @@ function Contact() {
         </form>
 
       </div>
-      <img src={image} alt="logo image" />
 
     </div>
    </div>
